@@ -65,6 +65,7 @@ export default {
     main {
         flex-grow: 1;
         background-color: $--dark;
+        overflow: auto;
 
         .grid {
             display: grid;
