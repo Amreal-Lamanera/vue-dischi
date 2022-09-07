@@ -1,27 +1,32 @@
 <template>
     <div class="card">
-      <img
-          class="card-img-top"
-          :src="poster"
-          alt="Card image cap"
-      >
-  
+        <div class="card-img-top position-relative">
+            <img
+                :src="poster"
+                alt="Card image cap"
+            >
+
+            <div class="btn">
+                &#11208;
+            </div>
+        </div>
+
       <div class="card-body">
   
           <h5 class="card-title">
               {{ title }}
           </h5>
-  
+
           <p class="card-text">
               {{ author }}
               <br>
               {{ year }}
           </p>
-  
+
       </div>
   </div>
 </template>
-  
+
 <script>
     export default {
         props: {
@@ -46,9 +51,49 @@
         height: 100%;
         min-height: 360px;
 
+        &:hover .card-img-top::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn {
+            display: none;
+        }
+
+        &:hover .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #FFF;
+            border: 5px solid #FFF;
+            border-radius: 100%;
+            position: absolute;
+            height: 4rem;
+            aspect-ratio: 1/1;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            font-size: 2rem;
+        }
+
         h5 {
             color: #FFF;
             text-transform: uppercase;
+        }
+
+        .card-img-top {
+            img {
+                width: 100%;
+            }
         }
 
         .card-body {
