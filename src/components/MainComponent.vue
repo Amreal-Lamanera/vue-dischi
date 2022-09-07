@@ -1,18 +1,18 @@
 <template>
   <main>
     <LoadingLayover v-if="!loaded" />
-    <div class="container-lg">
-        <div class="row">
-            <div class="col-2" v-for="(song,i) in songs" :key="i">
+    <div class="container-lg p-5">
+        <div class="grid">
 
+            <div class="grid-col" v-for="(song,i) in songs" :key="i">
                 <CardComponent
-                    :poster="song.poster"
-                    :title="song.title"
-                    :author="song.author"
-                    :year="song.year"
+                :poster="song.poster"
+                :title="song.title"
+                :author="song.author"
+                :year="song.year"
                 />
-
             </div>
+
         </div>
 
     </div>
@@ -51,7 +51,7 @@ export default {
                 // do un piccolo ritardo per far vedere il caricamento in ogni caso
                 setTimeout(() => {
                     this.loaded = true
-                },500)
+                },1000)
             });
     },
 }
@@ -65,6 +65,12 @@ export default {
     main {
         flex-grow: 1;
         background-color: $--dark;
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(5,1fr);
+            gap: 2rem;
+        }
     }
 
 </style>

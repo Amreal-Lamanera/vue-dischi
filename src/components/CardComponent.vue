@@ -20,19 +20,44 @@
   
       </div>
   </div>
-  </template>
+</template>
   
-  <script>
-      export default {
-          props: {
-            poster: String,
-            title: String,
-            author: String,
-            year: String,
-          }
-      }
-  </script>
+<script>
+    export default {
+        props: {
+        poster: String,
+        title: String,
+        author: String,
+        year: String,
+        }
+    }
+</script>
   
-  <style>
-  
-  </style>
+<style lang="scss" scoped>
+
+    @import '../style/variables.scss';
+
+    .card {
+        background-color: $--light;
+        padding: 1rem;
+        border-radius: 0;
+        text-align: center;
+        color: grey;
+
+        img{
+            height: 150px;
+        }
+
+        h5 {
+            color: #FFF;
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+
+
+</style>
