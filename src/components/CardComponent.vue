@@ -7,7 +7,7 @@
             >
 
             <div class="btn">
-                <i class="fa-solid fa-play"></i>
+                <font-awesome-icon icon="fa-solid fa-play" />
             </div>
         </div>
 

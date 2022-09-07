@@ -23,6 +23,10 @@ export default {
 
 <style lang="scss">
 
+// @import "../node_modules/font-awesome/css/font-awesome.css";
+// @import "../node_modules/font-awesome/css/font-awesome.min.css";
+
+
   * {
     font-family: "Roboto", sans-serif;
   }
