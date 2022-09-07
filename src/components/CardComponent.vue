@@ -91,6 +91,8 @@
         }
 
         .card-img-top {
+            cursor: pointer;
+            
             img {
                 width: 100%;
             }
