@@ -77,7 +77,8 @@
             border-radius: 100%;
             position: absolute;
             height: 4rem;
-            aspect-ratio: 1/1;
+            width: 4rem;
+            aspect-ratio: 1;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
