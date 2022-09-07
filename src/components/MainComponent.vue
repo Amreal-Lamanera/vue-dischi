@@ -2,7 +2,19 @@
   <main>
     <LoadingLayover v-if="!loaded" />
     <div class="container-lg">
-        <img :src="songs[0].poster" alt="">
+        <div class="row">
+            <div class="col-2" v-for="(song,i) in songs" :key="i">
+
+                <CardComponent
+                    :poster="song.poster"
+                    :title="song.title"
+                    :author="song.author"
+                    :year="song.year"
+                />
+
+            </div>
+        </div>
+
     </div>
   </main>
 </template>
@@ -10,11 +22,13 @@
 <script>
 import LoadingLayover from './LoadingLayover.vue';
 import axios from 'axios';
+import CardComponent from './CardComponent.vue';
 
 export default {
     components: {
-        LoadingLayover
-    },
+    LoadingLayover,
+    CardComponent
+},
     data() {
         return {
             loaded: false,
@@ -25,7 +39,7 @@ export default {
         // recupero i dati dalla api
         axios
             .get("https://flynn.boolean.careers/exercises/api/array/music")
-            .then((res) => {
+            .then(res => {
                 console.log("risposta della api con i data: ", res.data.response);
                 // *
                 this.songs = res.data.response;
