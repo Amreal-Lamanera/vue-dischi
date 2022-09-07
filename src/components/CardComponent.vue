@@ -7,7 +7,7 @@
             >
 
             <div class="btn">
-                &#11208;
+                <i class="fa-solid fa-play"></i>
             </div>
         </div>
 
@@ -92,7 +92,7 @@
 
         .card-img-top {
             cursor: pointer;
-            
+
             img {
                 width: 100%;
             }
