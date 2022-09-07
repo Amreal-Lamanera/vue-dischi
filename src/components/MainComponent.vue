@@ -68,8 +68,41 @@ export default {
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(5,1fr);
+            grid-template-columns: repeat(1,1fr);
             gap: 2rem;
+            align-items: center;
+        }
+    }
+
+    @media (min-width: $--sm) {
+        main {
+            .grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+        }
+    }
+
+    @media (min-width: $--md) {
+        main {
+            .grid {
+                grid-template-columns: repeat(3,1fr);
+            }
+        }
+    }
+
+    @media (min-width: $--lg) {
+        main {
+            .grid {
+                grid-template-columns: repeat(4,1fr);
+            }
+        }
+    }
+
+    @media (min-width: $--xl) {
+        main {
+            .grid {
+                grid-template-columns: repeat(5,1fr);
+            }
         }
     }
 

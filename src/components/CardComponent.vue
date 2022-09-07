@@ -1,5 +1,5 @@
 <template>
-    <div class="card h-100">
+    <div class="card">
       <img
           class="card-img-top"
           :src="poster"
@@ -43,19 +43,19 @@
         border-radius: 0;
         text-align: center;
         color: grey;
-
-        img{
-            height: 150px;
-        }
+        height: 100%;
+        min-height: 360px;
 
         h5 {
             color: #FFF;
+            text-transform: uppercase;
         }
 
         .card-body {
             display: flex;
             flex-direction: column;
             justify-content: center;
+            padding: 1rem 0;
         }
     }
 
