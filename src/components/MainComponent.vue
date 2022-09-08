@@ -63,6 +63,7 @@ export default {
             });
     },
     computed: {
+        // TODO: correzione nome Michael Jackson
         realSongs(){
             return this.songs.filter((el) => {
                 if(el.author === 'Michael Jacjson') el.author = 'Michael Jackson';
