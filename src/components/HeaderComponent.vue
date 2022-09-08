@@ -45,6 +45,13 @@
         img {
             height: 50px;
         }
+
+        select {
+          background-color: $--dark;
+          color: #FFF;
+          padding: 0.5rem;
+          
+        }
     }
 
 
