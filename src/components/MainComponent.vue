@@ -30,7 +30,11 @@ export default {
         CardComponent
     },
     props: {
-        filterData: {
+        filterDataGenre: {
+            type: String,
+            default: ''
+        },
+        filterDataAuthor: {
             type: String,
             default: ''
         }
@@ -59,11 +63,22 @@ export default {
             });
     },
     computed: {
-        filteredSongs() {
+        realSongs(){
             return this.songs.filter((el) => {
+                if(el.author === 'Michael Jacjson') el.author = 'Michael Jackson';
+                return true;
+            })
+        },
+        filteredSongs() {
+            return this.realSongs.filter((el) => {
                 const songGenre = el.genre.toLowerCase();
-                const filter = this.filterData.toLowerCase();
-                if(songGenre === filter || filter === '') return true;
+                const filterGenre = this.filterDataGenre.toLowerCase();
+                // console.log(songGenre, filterGenre);
+                const songAuthor = el.author.toLowerCase();
+                const filterAuthor = this.filterDataAuthor.toLowerCase();
+                // console.log(songAuthor, filterAuthor);
+
+                if((songAuthor === filterAuthor || filterAuthor === '') && (songGenre === filterGenre || filterGenre === '')) return true;
                 return false;
             })
         }

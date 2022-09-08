@@ -34,7 +34,7 @@
         title: String,
         author: String,
         year: String,
-        }
+        },
     }
 </script>
   

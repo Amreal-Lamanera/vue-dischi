@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <HeaderComponent @genreChanged="onChange" />
-    <MainComponent :filterData="filterVar" />
+    <HeaderComponent @genreChanged="onGenreChange" @authorChanged="onAuthorChange" />
+    <MainComponent :filterDataGenre="filterGenre" :filterDataAuthor="filterAuthor" />
     <FooterComponent />
   </div>
 </template>
@@ -20,12 +20,18 @@ export default {
   },
   data() {
       return {
-          filterVar: ""
+          filterGenre: "",
+          filterAuthor: ""
       };
   },
   methods: {
-      onChange(data) {
-          this.filterVar = data;
+      onGenreChange(data) {
+        console.log('CAMBIO GENERE');
+          this.filterGenre = data;
+      },
+      onAuthorChange(data) {
+        console.log('CAMBIO AUTORE');
+          this.filterAuthor = data;
       }
   },
 }
