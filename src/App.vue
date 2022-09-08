@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <HeaderComponent />
-    <MainComponent />
+    <HeaderComponent @genreChanged="onChange" />
+    <MainComponent :filterData="filterVar" />
     <FooterComponent />
   </div>
 </template>
@@ -16,8 +16,18 @@ export default {
     components: {
     HeaderComponent,
     MainComponent,
-    FooterComponent
-}
+    FooterComponent,
+  },
+  data() {
+      return {
+          filterVar: ""
+      };
+  },
+  methods: {
+      onChange(data) {
+          this.filterVar = data;
+      }
+  },
 }
 </script>
 
@@ -30,7 +40,7 @@ export default {
   * {
     font-family: "Roboto", sans-serif;
   }
-
+  
   #app {
     display: flex;
     flex-direction: column;

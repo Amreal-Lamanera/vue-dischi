@@ -4,7 +4,7 @@
     <div class="container-lg p-5">
         <div class="grid">
 
-            <div class="grid-col" v-for="(song,i) in songs" :key="i">
+            <div class="grid-col" v-for="(song,i) in filteredSongs" :key="i">
                 <CardComponent
                 :poster="song.poster"
                 :title="song.title"
@@ -26,9 +26,15 @@ import CardComponent from './CardComponent.vue';
 
 export default {
     components: {
-    LoadingLayover,
-    CardComponent
-},
+        LoadingLayover,
+        CardComponent
+    },
+    props: {
+        filterData: {
+            type: String,
+            default: ''
+        }
+    },
     data() {
         return {
             loaded: false,
@@ -36,12 +42,10 @@ export default {
         }
     },
     created() {
-        // recupero i dati dalla api
         axios
             .get("https://flynn.boolean.careers/exercises/api/array/music")
             .then(res => {
-                console.log("risposta della api con i data: ", res.data.response);
-                // *
+                // console.log("risposta della api con i data: ", res.data.response);
                 this.songs = res.data.response;
             })
             .catch((err) => {
@@ -53,6 +57,16 @@ export default {
                     this.loaded = true
                 },1000)
             });
+    },
+    computed: {
+        filteredSongs() {
+            return this.songs.filter((el) => {
+                const songGenre = el.genre.toLowerCase();
+                const filter = this.filterData.toLowerCase();
+                if(songGenre === filter || filter === '') return true;
+                return false;
+            })
+        }
     },
 }
 
