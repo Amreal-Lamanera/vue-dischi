@@ -10,10 +10,13 @@
         @change="$emit('genreChanged', genre)"
         class="rounded me-3"
        >
+
         <option value="">Filtra per Genere</option>
+
         <option v-for="genre,i in getGenres" :key="i">
           {{ genre }}
         </option>
+        
       </select>
 
       <select
@@ -21,10 +24,13 @@
         @change="$emit('authorChanged', author)"
         class="rounded"
        >
+
         <option value="">Filtra per Autore</option>
+
         <option v-for="author,i in getAuthors" :key="i">
           {{ author }}
         </option>
+
       </select>
 
     </div>
@@ -33,6 +39,7 @@
 </template>
 
 <script>
+
   export default {
     props: {
       songs: Array
@@ -44,6 +51,7 @@
       }
     },
     computed: {
+
       getGenres() {
         const genres = new Array();
         this.songs.forEach(el => {
@@ -52,6 +60,7 @@
         const uniq = [...new Set(genres)];
         return uniq;
       },
+
       getAuthors() {
         const authors = new Array();
         this.songs.forEach(el => {
@@ -61,7 +70,9 @@
         return uniq;
       }
     },
+
   }
+
 </script>
 
 <style lang="scss" scoped>

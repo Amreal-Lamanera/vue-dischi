@@ -5,12 +5,14 @@
         <div class="grid">
 
             <div class="grid-col" v-for="(song,i) in filteredSongs" :key="i">
+
                 <CardComponent
                 :poster="song.poster"
                 :title="song.title"
                 :author="song.author"
                 :year="song.year"
                 />
+
             </div>
 
         </div>
@@ -20,73 +22,74 @@
 </template>
 
 <script>
-import LoadingLayover from './LoadingLayover.vue';
-// import axios from 'axios';
-import CardComponent from './CardComponent.vue';
 
-export default {
-    components: {
-        LoadingLayover,
-        CardComponent
-    },
-    props: {
-        filterDataGenre: {
-            type: String,
-            default: ''
+    import LoadingLayover from './LoadingLayover.vue';
+    import CardComponent from './CardComponent.vue';
+    // import axios from 'axios';
+
+    export default {
+        components: {
+            LoadingLayover,
+            CardComponent
         },
-        filterDataAuthor: {
-            type: String,
-            default: ''
+        props: {
+            filterDataGenre: {
+                type: String,
+                default: ''
+            },
+            filterDataAuthor: {
+                type: String,
+                default: ''
+            },
+            loaded: Boolean,
+            songs: Array
         },
-        loaded: Boolean,
-        songs: Array
-    },
-    data() {
-        return {
-            // loaded: false,
-            // songs: []
-        }
-    },
-    // created() {
-    //     axios
-    //         .get("https://flynn.boolean.careers/exercises/api/array/music")
-    //         .then(res => {
-    //             // console.log("risposta della api con i data: ", res.data.response);
-    //             this.songs = res.data.response;
-    //         })
-    //         .catch((err) => {
-    //             console.log("Errore: ", err);
-    //         })
-    //         .finally(() => {
-    //             // do un piccolo ritardo per far vedere il caricamento in ogni caso
-    //             setTimeout(() => {
-    //                 this.loaded = true
-    //             },1000)
-    //         });
-    // },
-    computed: {
-        // TODO: correzione nome Michael Jackson
-        // realSongs(){
-        //     return this.songs.map((el) => {
-        //         if(el.author === 'Michael Jacjson') el.author = 'Michael Jackson'
-        //         return el;
-        //     })
+        // data() {
+            // return {
+                // loaded: false,
+                // songs: []
+            // }
         // },
-        filteredSongs() {
-            return this.songs.filter((el) => {
-                const songGenre = el.genre.toLowerCase();
-                const filterGenre = this.filterDataGenre.toLowerCase();
-                // console.log(songGenre, filterGenre);
-                const songAuthor = el.author.toLowerCase();
-                const filterAuthor = this.filterDataAuthor.toLowerCase();
-                // console.log(songAuthor, filterAuthor);
+        // created() {
+        //     axios
+        //         .get("https://flynn.boolean.careers/exercises/api/array/music")
+        //         .then(res => {
+        //             // console.log("risposta della api con i data: ", res.data.response);
+        //             this.songs = res.data.response;
+        //         })
+        //         .catch((err) => {
+        //             console.log("Errore: ", err);
+        //         })
+        //         .finally(() => {
+        //             // do un piccolo ritardo per far vedere il caricamento in ogni caso
+        //             setTimeout(() => {
+        //                 this.loaded = true
+        //             },1000)
+        //         });
+        // },
+        computed: {
+            // TODO: correzione nome Michael Jackson
+            // realSongs(){
+            //     return this.songs.map((el) => {
+            //         if(el.author === 'Michael Jacjson') el.author = 'Michael Jackson'
+            //         return el;
+            //     })
+            // },
+            filteredSongs() {
+                return this.songs.filter((el) => {
+                    const songGenre = el.genre.toLowerCase();
+                    const filterGenre = this.filterDataGenre.toLowerCase();
+                    // console.log(songGenre, filterGenre);
+                    const songAuthor = el.author.toLowerCase();
+                    const filterAuthor = this.filterDataAuthor.toLowerCase();
+                    // console.log(songAuthor, filterAuthor);
 
-                if((songAuthor === filterAuthor || filterAuthor === '') && (songGenre === filterGenre || filterGenre === '')) return true;
-                return false;
-            })
-        }
-    },
-}
+                    if((songAuthor === filterAuthor || filterAuthor === '') && (songGenre === filterGenre || filterGenre === '')) return true;
+                    return false;
+                })
+            }
+        },
+    }
 
 </script>
 
