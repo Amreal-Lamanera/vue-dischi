@@ -6,32 +6,39 @@
     <div class="filters">
 
       <select
+        name="genreSelect"
         v-model="genre"
         @change="$emit('genreChanged', genre)"
         class="rounded me-3"
-       >
-
-        <option value="">Filtra per Genere</option>
-
-        <option v-for="genre,i in getGenres" :key="i">
-          {{ genre }}
-        </option>
-        
-      </select>
-
-      <select
-        v-model="author"
-        @change="$emit('authorChanged', author)"
-        class="rounded"
-       >
-
-        <option value="">Filtra per Autore</option>
-
-        <option v-for="author,i in getAuthors" :key="i">
-          {{ author }}
-        </option>
-
-      </select>
+        @focusin="openGen = true, focusGen = true"
+        @focusout="openGen = false, focusGen = false"
+        @click="clickHandlerGen"
+      >
+      
+          <option value="" default>{{ !openGen? defGen : '' }}Tutti</option>
+  
+          <option v-for="genre,i in getGenres" :key="i" :value="genre">
+            {{ `${!openGen? defGen : ''} ${genre}` }}
+          </option>
+        </select>
+  
+        <select
+          name="authorSelect"
+          v-model="author"
+          @change="$emit('authorChanged', author)"
+          class="rounded"
+          @focusin="openAut = true, focusAut = true"
+          @focusout="openAut = false, focusAut = false"
+          @click="clickHandlerAut"
+         >
+  
+          <option value="">{{ !openAut? defAut : '' }}Tutti</option>
+  
+          <option v-for="author,i in getAuthors" :key="i" :value="author">
+            {{ `${!openAut? defAut : ''} ${author}` }}
+          </option>
+  
+        </select>
 
     </div>
 
@@ -47,7 +54,13 @@
     data() {
       return {
         genre: '',
-        author: ''
+        author: '',
+        defGen: 'Genere: ',
+        defAut: 'Autore: ',
+        openGen: false,
+        openAut: false,
+        focusGen: false,
+        focusAut: false
       }
     },
     computed: {
@@ -70,6 +83,22 @@
         return uniq;
       }
     },
+    methods: {
+
+      clickHandlerGen(){
+        if(!this.focusGen){
+         this.openGen=!this.openGen;
+        }
+        else this.focusGen = false;
+      },
+      clickHandlerAut(){
+        if(!this.focusAut){
+         this.openAut=!this.openAut;
+        }
+        else this.focusAut = false;
+      },
+
+    }
 
   }
 
@@ -92,7 +121,7 @@
           background-color: $--dark;
           color: #FFF;
           padding: 0.5rem;
-
+          width: 200px;
         }
     }
 
