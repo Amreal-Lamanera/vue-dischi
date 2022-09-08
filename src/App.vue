@@ -26,11 +26,11 @@ export default {
   },
   methods: {
       onGenreChange(data) {
-        console.log('CAMBIO GENERE');
+        // console.log('CAMBIO GENERE');
           this.filterGenre = data;
       },
       onAuthorChange(data) {
-        console.log('CAMBIO AUTORE');
+        // console.log('CAMBIO AUTORE');
           this.filterAuthor = data;
       }
   },
