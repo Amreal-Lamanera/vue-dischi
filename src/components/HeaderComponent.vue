@@ -1,15 +1,36 @@
 <template>
-  <header>
+  <header class="d-flex justify-content-between">
 
     <img src="../assets/lama.png" alt="">
+
+    <select
+      v-model="genre"
+      @change="$emit('genreChanged', genre)"
+      class="rounded"
+     >
+      <option value="">Filtra per Genere</option>
+      <option>Rock</option>
+      <option>Pop</option>
+      <option>Jazz</option>
+      <option>Metal</option>
+    </select>
 
   </header>
 </template>
 
 <script>
-export default {
-
-}
+  export default {
+    data() {
+      return {
+        genre: ''
+      }
+    },
+    // methods: {
+    //   boh() {
+    //     console.log(this.genre);
+    //   }
+    // },
+  }
 </script>
 
 <style lang="scss" scoped>
