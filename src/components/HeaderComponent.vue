@@ -11,10 +11,9 @@
         class="rounded me-3"
        >
         <option value="">Filtra per Genere</option>
-        <option>Rock</option>
-        <option>Pop</option>
-        <option>Jazz</option>
-        <option>Metal</option>
+        <option v-for="genre,i in getGenres" :key="i">
+          {{ genre }}
+        </option>
       </select>
 
       <select
@@ -23,16 +22,9 @@
         class="rounded"
        >
         <option value="">Filtra per Autore</option>
-        <option>Bon Jovi</option>
-        <option>Queen</option>
-        <option>Sting</option>
-        <option>Steve Gadd Band</option>
-        <option>Iron Maiden</option>
-        <option>Eric Clapton</option>
-        <option>Deep Purple</option>
-        <option>Metallica</option>
-        <option>Dave Weckl</option>
-        <option>Michael Jackson</option>
+        <option v-for="author,i in getAuthors" :key="i">
+          {{ author }}
+        </option>
       </select>
 
     </div>
@@ -42,17 +34,33 @@
 
 <script>
   export default {
+    props: {
+      songs: Array
+    },
     data() {
       return {
         genre: '',
         author: ''
       }
     },
-    // methods: {
-    //   boh() {
-    //     console.log(this.genre);
-    //   }
-    // },
+    computed: {
+      getGenres() {
+        const genres = new Array();
+        this.songs.forEach(el => {
+          genres.push(el.genre);
+        });
+        const uniq = [...new Set(genres)];
+        return uniq;
+      },
+      getAuthors() {
+        const authors = new Array();
+        this.songs.forEach(el => {
+          authors.push(el.author);
+        });
+        const uniq = [...new Set(authors)];
+        return uniq;
+      }
+    },
   }
 </script>
 

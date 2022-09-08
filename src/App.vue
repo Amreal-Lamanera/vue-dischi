@@ -1,7 +1,16 @@
 <template>
   <div id="app">
-    <HeaderComponent @genreChanged="onGenreChange" @authorChanged="onAuthorChange" />
-    <MainComponent :filterDataGenre="filterGenre" :filterDataAuthor="filterAuthor" />
+    <HeaderComponent
+      @genreChanged="onGenreChange"
+      @authorChanged="onAuthorChange"
+      :songs="songs"
+    />
+    <MainComponent
+      :filterDataGenre="filterGenre"
+      :filterDataAuthor="filterAuthor"
+      :loaded="loaded"
+      :songs="songs"
+     />
     <FooterComponent />
   </div>
 </template>
@@ -10,6 +19,8 @@
 import HeaderComponent from './components/HeaderComponent.vue';
 import MainComponent from './components/MainComponent.vue';
 import FooterComponent from './components/FooterComponent.vue';
+import axios from 'axios';
+
 
 export default {
     name: 'App',
@@ -21,7 +32,9 @@ export default {
   data() {
       return {
           filterGenre: "",
-          filterAuthor: ""
+          filterAuthor: "",
+          loaded: false,
+          songs: []
       };
   },
   methods: {
@@ -33,6 +46,28 @@ export default {
         // console.log('CAMBIO AUTORE');
           this.filterAuthor = data;
       }
+  },
+  created() {
+    axios
+        .get("https://flynn.boolean.careers/exercises/api/array/music")
+        .then(res => {
+            // console.log("risposta della api con i data: ", res.data.response);
+            this.songs = res.data.response;
+        })
+        .catch((err) => {
+            console.log("Errore: ", err);
+        })
+        .finally(() => {
+            // do un piccolo ritardo per far vedere il caricamento in ogni caso
+            setTimeout(() => {
+                this.loaded = true
+            },1000)
+            //TODO: CORREZIONE NOME MJ
+            this.songs.forEach((el) => {
+                if(el.author === 'Michael Jacjson') el.author = 'Michael Jackson'
+            })
+        });
+
   },
 }
 </script>

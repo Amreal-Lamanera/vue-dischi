@@ -21,7 +21,7 @@
 
 <script>
 import LoadingLayover from './LoadingLayover.vue';
-import axios from 'axios';
+// import axios from 'axios';
 import CardComponent from './CardComponent.vue';
 
 export default {
@@ -37,41 +37,43 @@ export default {
         filterDataAuthor: {
             type: String,
             default: ''
-        }
+        },
+        loaded: Boolean,
+        songs: Array
     },
     data() {
         return {
-            loaded: false,
-            songs: []
+            // loaded: false,
+            // songs: []
         }
     },
-    created() {
-        axios
-            .get("https://flynn.boolean.careers/exercises/api/array/music")
-            .then(res => {
-                // console.log("risposta della api con i data: ", res.data.response);
-                this.songs = res.data.response;
-            })
-            .catch((err) => {
-                console.log("Errore: ", err);
-            })
-            .finally(() => {
-                // do un piccolo ritardo per far vedere il caricamento in ogni caso
-                setTimeout(() => {
-                    this.loaded = true
-                },1000)
-            });
-    },
+    // created() {
+    //     axios
+    //         .get("https://flynn.boolean.careers/exercises/api/array/music")
+    //         .then(res => {
+    //             // console.log("risposta della api con i data: ", res.data.response);
+    //             this.songs = res.data.response;
+    //         })
+    //         .catch((err) => {
+    //             console.log("Errore: ", err);
+    //         })
+    //         .finally(() => {
+    //             // do un piccolo ritardo per far vedere il caricamento in ogni caso
+    //             setTimeout(() => {
+    //                 this.loaded = true
+    //             },1000)
+    //         });
+    // },
     computed: {
         // TODO: correzione nome Michael Jackson
-        realSongs(){
-            return this.songs.map((el) => {
-                if(el.author === 'Michael Jacjson') el.author = 'Michael Jackson'
-                return el;
-            })
-        },
+        // realSongs(){
+        //     return this.songs.map((el) => {
+        //         if(el.author === 'Michael Jacjson') el.author = 'Michael Jackson'
+        //         return el;
+        //     })
+        // },
         filteredSongs() {
-            return this.realSongs.filter((el) => {
+            return this.songs.filter((el) => {
                 const songGenre = el.genre.toLowerCase();
                 const filterGenre = this.filterDataGenre.toLowerCase();
                 // console.log(songGenre, filterGenre);
